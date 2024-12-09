@@ -53,7 +53,7 @@ public class ExerciseManager {
     }
 
     public void start(int number) {
-        if (exercises.isEmpty() || number < 1 || number > exercises.size()) return;
+        if (exercises.isEmpty() || number < 0 || number >= exercises.size()) return;
         try {
             exercises.get(number).start();
         } catch (Exception e) {
