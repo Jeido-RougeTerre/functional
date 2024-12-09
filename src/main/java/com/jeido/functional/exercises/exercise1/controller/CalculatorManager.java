@@ -16,10 +16,10 @@ public class CalculatorManager {
 
     private CalculatorManager() {
         operators = new HashMap<>();
-        operators.put("+", (x, y) -> x + y);
+        operators.put("+", (x, y) -> x + y); //Double.sum(x,y); Double::sum;
         operators.put("-", (x, y) -> x - y);
         operators.put("*", (x, y) -> x * y);
-        operators.put("/", (x, y) -> x / y);
+        operators.put("/", (x, y) -> (y != 0)? x / y : Double.NaN);
     }
 
     public Double process(String input) {

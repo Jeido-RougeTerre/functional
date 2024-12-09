@@ -3,11 +3,13 @@ package com.jeido.functional.exercises.exercise1.ui;
 import com.jeido.functional.exercises.exercise1.controller.CalculatorManager;
 
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 public class CalculatorUI {
     private static CalculatorUI instance;
     private final CalculatorManager manager = CalculatorManager.getInstance();
     private final Scanner scanner = new Scanner(System.in);
+    private Consumer<String> output = System.out::print;
 
     public static CalculatorUI getInstance() {
         if (instance == null) {
@@ -20,7 +22,7 @@ public class CalculatorUI {
 
     public void display() {
         while (true) {
-            System.out.print("""
+            output.accept("""
                     == Calculator ==
                     Enter a simple operation like this : 14 + 5
                     to quit enter 'stop'
@@ -33,9 +35,9 @@ public class CalculatorUI {
             Double result = manager.process(operation);
 
             if (result != null) {
-                System.out.println(operation + " = " + result);
+                output.accept(operation + " = " + result + '\n');
             } else {
-                System.out.println(operation + " is invalid");
+                output.accept(operation + " is invalid" + '\n');
             }
         }
     }
