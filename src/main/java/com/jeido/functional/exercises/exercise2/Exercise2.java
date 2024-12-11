@@ -8,7 +8,7 @@ import com.jeido.functional.exercises.exercise2.entity.Product;
 import java.util.List;
 
 public class Exercise2 {
-    public static void start() {
+    public static void main(String[] args) {
         Product p1 = new Product("Chocolate", 15.25, 2);
         Product p2 = new Product("Toilet Paper", 2.50, 0);
         Product p3 = new Product("Tentacles pickles", 14.50, 3);
@@ -51,5 +51,6 @@ public class Exercise2 {
         System.out.println("restock5: " + products.stream().map(restock5::transform).toList());
         System.out.println("unload: " + products.stream().map(unload::transform).toList());
         System.out.println("SALE 10%!!!!!! SASALELE : " + products.stream().map(sale10percent::operate).toList());
+
     }
 }

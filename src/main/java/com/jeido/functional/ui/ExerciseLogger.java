@@ -3,6 +3,7 @@ package com.jeido.functional.ui;
 import com.jeido.functional.exercises.ExerciseBase;
 import com.jeido.functional.exercises.ExerciseManager;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ExerciseLogger {
@@ -39,8 +40,10 @@ public class ExerciseLogger {
             System.out.print(sb);
 
             String input = scanner.nextLine();
+            String[] args = Arrays.stream(input.split(" ")).skip(1).toArray(String[]::new);
+
             try {
-                int choice = Integer.parseInt(input);
+                int choice = Integer.parseInt(input.split(" ")[0]);
                 if (choice == 0) {
                     scanner.close();
                     System.out.println("Goodbye");
@@ -51,9 +54,9 @@ public class ExerciseLogger {
                     System.out.println("Invalid exercise number [1-" + exerciseManager.getExercises().size() + "]");
                 } else {
 
-                    exerciseManager.start(choice - 1);
+                    exerciseManager.start(choice - 1, args);
                     System.out.print("End of Exercise " + choice + " (Press RETURN to continue)");
-                    String _a = scanner.nextLine();
+                    scanner.nextLine();
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid exercise number");

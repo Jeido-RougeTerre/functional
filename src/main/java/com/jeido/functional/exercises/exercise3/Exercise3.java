@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Exercise3 {
-    public static void start() {
+    public static void main(String[] args) {
         Reader reader = Reader.getInstance();
         List<Film> films = reader.read();
 

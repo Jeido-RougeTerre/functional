@@ -39,7 +39,7 @@ public class ExerciseManager {
                     exerciseName = line1.replace("#", "").trim();
                 }
 
-                exercises.add(new ExerciseBase(i, exerciseName, exerciseClass.getDeclaredMethod("start")));
+                exercises.add(new ExerciseBase(i, exerciseName, exerciseClass.getDeclaredMethod("main", String[].class)));
 
 
             } catch (Exception e) {
@@ -52,10 +52,10 @@ public class ExerciseManager {
         return exercises;
     }
 
-    public void start(int number) {
+    public void start(int number, String[] args) {
         if (exercises.isEmpty() || number < 0 || number >= exercises.size()) return;
         try {
-            exercises.get(number).start();
+            exercises.get(number).start(args);
         } catch (Exception e) {
             e.printStackTrace();
         }

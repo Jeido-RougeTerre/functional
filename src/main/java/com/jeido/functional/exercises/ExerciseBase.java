@@ -9,9 +9,9 @@ public record ExerciseBase(int id, String title, Method method) {
         return id + ". " + title;
     }
 
-    public void start() {
+    public void start(String[] args) {
         try {
-            method.invoke(null);
+            method.invoke(null, (Object) args);
         } catch (IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
