@@ -109,7 +109,7 @@ public class Exercise4 {
     }
 
     private static void displayIsAllClientHaveAtLeastOneDeliveredCommand() {
-        System.out.printf("Is all client have at least one deliverd command : %s%n",
+        System.out.printf("Is all client have at least one delivered command : %s%n",
                 COMMANDS.stream().collect(Collectors.groupingBy(Command::getClient)).values().stream()
                         .allMatch(v -> v.stream().anyMatch(Command::isDelivered))?
                 "yes" : "no"
