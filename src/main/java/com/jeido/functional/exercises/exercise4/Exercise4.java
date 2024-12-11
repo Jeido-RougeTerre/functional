@@ -91,7 +91,7 @@ public class Exercise4 {
     }
 
     private static void displayArticlesAndPrice() {
-        COMMANDS.forEach(c -> System.out.printf("%s - %.2f%n", c.getArticles(), c.getTotalPrice()));
+        COMMANDS.forEach(c -> System.out.printf("#%d%s - %.2f%n", c.getId(), c.getArticles(), c.getTotalPrice()));
     }
 
     private static void displayDeliveredCommands() {
@@ -109,7 +109,7 @@ public class Exercise4 {
     }
 
     private static void displayIsAllClientHaveAtLeastOneDeliveredCommand() {
-        System.out.printf("Is all client have at least one deliverd command : %s",
+        System.out.printf("Is all client have at least one deliverd command : %s%n",
                 COMMANDS.stream().collect(Collectors.groupingBy(Command::getClient)).values().stream()
                         .allMatch(v -> v.stream().anyMatch(Command::isDelivered))?
                 "yes" : "no"
