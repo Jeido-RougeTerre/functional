@@ -135,7 +135,7 @@ public class Exercise5 {
 
     private static void displayAveragePricesOfAvailableBooks() {
         BOOKS.stream().filter(Book::available).mapToDouble(Book::price).average()
-                .ifPresent( d -> System.out.printf("Average Prices of Available Books is %.2f$", d));
+                .ifPresent( d -> System.out.printf("Average Prices of Available Books is %.2f$%n", d));
     }
 
     private static void displayBooksSortedByPagesAndByPrice() {
