@@ -140,7 +140,7 @@ public class Exercise5 {
 
     private static void displayBooksSortedByPagesAndByPrice() {
         System.out.println("Books sorted by Pages and Prices:");
-        BOOKS.stream().sorted(Comparator.comparingDouble(Book::price)).sorted(Comparator.comparingInt(Book::pages)).forEach(System.out::println);
+        BOOKS.stream().sorted(Comparator.comparingInt(Book::pages).thenComparingDouble(Book::price)).forEach(System.out::println);
     }
 
     private static void displayTotalPagesForFantasyBooks() {
@@ -159,7 +159,9 @@ public class Exercise5 {
     }
 
     private static void displayMostProlificAuthors() {
-        BOOKS.stream().collect(Collectors.groupingBy(Book::author)).entrySet().stream().filter(entry -> entry.getValue().size() > 17 ).forEach(entry -> {
+        BOOKS.stream().collect(Collectors.groupingBy(Book::author))
+                .entrySet().stream().filter(entry -> entry.getValue().size() > 17 )
+                .forEach(entry -> {
             StringBuilder sb = new StringBuilder(entry.getKey()).append(" (").append(entry.getValue().size());
             sb.append(" Books) : \n");
             entry.getValue().forEach(b -> sb.append('\t').append(b).append('\n'));
@@ -168,17 +170,22 @@ public class Exercise5 {
     }
 
     private static void displayNbBooksByGenre() {
-        BOOKS.stream().collect(Collectors.groupingBy(Book::genre))
-                .forEach((genre, books) -> System.out.printf("%s %d Books.%n", genre, books.size()));
+        BOOKS.stream().collect(Collectors.groupingBy(Book::genre, Collectors.counting()))
+                .forEach((genre, books) -> System.out.printf("%s %d Books.%n", genre, books));
     }
 
     private static void displayAvailableBooksLowerThan(double threshold) {
         System.out.printf("Available Books lower than %.2f$ :%n", threshold);
-        BOOKS.stream().filter(Book::available).filter(b -> b.price() < threshold).forEach(System.out::println);
+        BOOKS.stream().filter(b -> b.price() < threshold && b.available()).forEach(System.out::println);
     }
 
     private static void displayTotalNbPagesByYear() {
-        BOOKS.stream().collect(Collectors.groupingBy(b -> b.publicationDate().getYear())).forEach((key, value) -> System.out.printf("%d %d pages.%n", key, value.stream().mapToInt(Book::pages).sum()));
+        BOOKS.stream().collect(Collectors.groupingBy(
+                b -> b.publicationDate().getYear(), Collectors.summingInt(Book::pages)
+                )).forEach((key, value) -> System.out.printf(
+                        "%d %d pages.%n",
+                        key, value)
+                );
     }
 
     private static void full() {
