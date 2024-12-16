@@ -4,16 +4,15 @@ import com.jeido.functional.exercises.ExerciseBase;
 import com.jeido.functional.exercises.ExerciseManager;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
-public class ExerciseLogger {
+public class ExerciseLogger extends Menu {
     private static ExerciseLogger instance;
     private final ExerciseManager exerciseManager;
-    private final Scanner scanner;
 
     private ExerciseLogger() {
+        super("choose an exercise");
         exerciseManager = ExerciseManager.getInstance();
-        scanner = new Scanner(System.in);
+
     }
 
     public static ExerciseLogger getInstance() {
@@ -45,7 +44,6 @@ public class ExerciseLogger {
             try {
                 int choice = Integer.parseInt(input.split(" ")[0]);
                 if (choice == 0) {
-                    scanner.close();
                     System.out.println("Goodbye");
                     return;
                 }

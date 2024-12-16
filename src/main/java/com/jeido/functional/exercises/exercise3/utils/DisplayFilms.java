@@ -4,6 +4,8 @@ import com.jeido.functional.exercises.exercise3.entity.Film;
 
 import java.util.List;
 
+import static com.jeido.functional.utils.StringUtils.*;
+
 public class DisplayFilms {
 
     public static void display(List<Film> films) {
@@ -29,36 +31,5 @@ public class DisplayFilms {
         }
 
         System.out.print(sb);
-    }
-
-    private static String center(String string, int length) {
-        if (string.length() >= length) {
-            return string;
-        }
-
-        int midLen = length / 2;
-        int midStringLen = string.length() / 2;
-        int start = midLen - midStringLen;
-        int end = length - (start + string.length());
-
-        return " ".repeat(start) + string + " ".repeat(end);
-    }
-
-    private static String left(String string, int length) {
-        if (string.length() >= length) {
-            return string;
-        }
-
-        int end = length - (string.length());
-        return string + " ".repeat(end);
-    }
-
-    private static String right(String string, int length) {
-        if (string.length() >= length) {
-            return string;
-        }
-
-        int start = length - string.length();
-        return " ".repeat(start) + string;
     }
 }
